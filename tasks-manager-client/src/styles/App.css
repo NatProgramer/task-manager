@@ -1,0 +1,18 @@
+.tag {
+    background-color: #222;
+    padding: 8px 16px;
+    margin-right: 8px;
+    border-radius: 8px;
+}
+
+.LOW {
+    background-color: #10c25a;
+}
+
+.MEDIUM {
+    background-color: #fafa4f;
+}
+
+.HIGH {
+    background-color: #f64848;
+}

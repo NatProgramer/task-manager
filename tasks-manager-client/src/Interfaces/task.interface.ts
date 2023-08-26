@@ -3,10 +3,19 @@ import { statusValues, priorityValues } from './task.enum'
 export interface Task {
     _id: string,
     title: string,
-    description?: string | null,
+    description: string,
     status: statusValues,
     priority: priorityValues,
     createdAt: string,
     updatedAt: string,
-    __v: number
+}
+
+export interface MappedTask {
+    id: string,
+    title: string,
+    description: string,
+    status: statusValues,
+    priority: priorityValues,
+    createdAt: string,
+    updatedAt: string,
 }

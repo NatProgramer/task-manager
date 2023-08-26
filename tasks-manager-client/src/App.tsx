@@ -1,47 +1,36 @@
-import { priorityValues, statusValues } from "./Interfaces/task.enum"
-import { Task } from "./Interfaces/task.interface"
+import { useEffect, useState } from "react"
+import { MappedTask } from "./Interfaces/task.interface"
+import { fetchTasks } from "./Utils/functions"
+import TaskItem from "./Components/TaskItem"
 import './styles/App.css'
+import { Link } from "react-router-dom"
 
-function App() {
-  const tasks: Task[] = [{
-      "_id": "64e95eb69806c1e5c29652fb",
-      "title": "First task",
-      "description": "Realize something task",
-      "status": statusValues.PENDING,
-      "priority": priorityValues.LOW,
-      "createdAt": "2023-08-26T02:08:54.557Z",
-      "updatedAt": "2023-08-26T02:09:38.001Z",
-      "__v": 0
-  }, {
-    "_id": "64e97b51bd91c630164a2a0a",
-    "title": "second task",
-    "status": statusValues.PENDING,
-    "priority": priorityValues.MEDIUM,
-    "createdAt": "2023-08-26T04:10:58.872Z",
-    "updatedAt": "2023-08-26T04:10:58.872Z",
-    "__v": 0
-  }]
+function useTasks () {
+  const [tasks, setTasks] = useState<MappedTask[]>([])
+
+  useEffect(() => {
+    fetchTasks().then(newTasks => setTasks(newTasks))
+  }, [])
+
+  return { tasks }
+}
+
+export function App() {
+  const { tasks } = useTasks()
 
   return (
     <>
       <header>
-        <h1>Task manager</h1>
+        <h2>Task manager</h2>
+        <Link className="create-task" to={'/create'}>New task</Link>
       </header>
 
       <main>
         <ul>
           {
-            tasks.map(task => (
-            
-              <li key={task._id}>
-                <h2>{task.title}</h2>
-                {task?.description ? <p>{task.description}</p> : <></>}
-
-                <span className="tag">#{task.status.toLowerCase()}</span>
-
-                <span className={"tag"}>#{task.priority.toLowerCase()}</span>
-              </li>
-            ))
+            tasks.length > 0 ? tasks.map((task: MappedTask) => (   
+              <TaskItem key={task.id} task={task} />
+            )) : <></>
           }
         </ul>
       </main>

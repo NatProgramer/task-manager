@@ -1,18 +1,42 @@
+:root {
+  --low: #10c25a;
+  --medium: #f3ce00;
+  --high: #f44336;
+  --button-base: #3160e0;
+  --pending: #FFA500;
+  --progress:#800080;
+  --complete: #10c25a;
+  --button-hover: #040a0f;
+  --scrollbar-thumb: var(--button-hover);
+}
+
 .tag {
-    background-color: #222;
+    background-color: #3160e0;
     padding: 8px 16px;
     margin-right: 8px;
     border-radius: 8px;
 }
 
 .LOW {
-    background-color: #10c25a;
+    background-color: var(--low);
 }
 
 .MEDIUM {
-    background-color: #fafa4f;
+    background-color: var(--medium);
 }
 
 .HIGH {
-    background-color: #f64848;
+    background-color: var(--high);
+}
+
+.PENDING {
+    background-color: var(--pending);
+}
+
+.IN_PROGRESS {
+    background-color: var(--progress);
+}
+
+.COMPLETE {
+    background-color: var(--complete);
 }

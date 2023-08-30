@@ -3,7 +3,7 @@
  */
 
  :root {
-  --background-body: #202b38;
+  --background-body: #1a1a1a;
   --background: #161f27;
   --selection: #1c76c5;
   --text-main: #dbdbdb;
@@ -12,8 +12,8 @@
   --links: #41adff;
   --focus: #0096bfab;
   --border: #526980;
-  --button-base: #0c151c;
-  --button-hover: #040a0f;
+  --button-base: #3160e0;
+  --button-hover: #1b4ed9;
   --scrollbar-thumb: var(--button-hover);
   --scrollbar-thumb-hover: rgb(0, 0, 0);
 }
@@ -63,9 +63,9 @@ ul {
 main > ul {
   display: grid;
   max-width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap:12px;
-  padding: 0;
+  padding: 0 100px;
   margin: 0;
 }
 
@@ -99,7 +99,6 @@ input[type="text"] {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
 }
 
 /* Estilo para el botón */
@@ -112,6 +111,7 @@ button, .create-task {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  transition: background 150ms;
 }
 
 /* Cambiar el estilo del botón cuando se coloca el cursor encima */
@@ -155,7 +155,8 @@ input {
   background-color: #161f27;
   background-color: var(--background);
   font-family: inherit;
-  font-size: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
   margin-bottom: 6px;
   border: none;
   border-radius: 6px;
@@ -168,13 +169,16 @@ textarea {
   background-color: #161f27;
   background-color: var(--background);
   font-family: inherit;
-  font-size: inherit;
+  font-size: 1.2rem;
+  font-weight: 500;
   margin-right: 6px;
   margin-bottom: 6px;
   padding: 10px;
   border: none;
   border-radius: 6px;
   outline: none;
+  resize: vertical;
+  border: #fff solid 0.1px;
 }
 
 form {
@@ -219,4 +223,29 @@ label {
   margin-top: 12px;
   margin-bottom: 12px;
   font-weight: bold;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 8px 14px; 
+  background: var(--background);
+  color: var(--links);
+}
+
+.return-to-main {
+  text-decoration: none;
+  color: var(--links);
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 200ms;
+}
+
+.return-to-main:hover {
+  color: var(--focus);
 }

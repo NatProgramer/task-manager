@@ -6,14 +6,14 @@ interface Props {
 
 export default function TaskItem ({ task }: Props) {
   return (
-      <li >
+      <li>
 
         <h2>{task.title}</h2>
         <p>{task.description}</p>
 
-        <span className="tag">#{task.status.toLowerCase()}</span>
+        <span className={"tag " + task.status} >{task.status.toLowerCase()}</span>
 
-        <span className={"tag"}>#{task.priority.toLowerCase()}</span>
+        <span className={"tag " + task.priority}>{task.priority.toLowerCase()}</span>
 
       </li>
   )

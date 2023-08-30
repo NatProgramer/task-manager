@@ -1,23 +1,14 @@
-import { FormEvent, useRef } from "react";
-import { createTaskDto } from "../dto/createTask.dto";
+import { ChangeEvent, useRef } from "react";
+import { Link } from "react-router-dom";
+import useNewTask from "../Hooks/useNewTask";
 
 export default function CreateTasks() {
-  const title = useRef<HTMLInputElement | null>(null)
-  const description = useRef<HTMLInputElement | null>(null)
+  const title = useRef<string>('')
+  const description = useRef<string>('')
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    const task: createTaskDto = {
-      title: title.current?.value,
-      description: description.current?.value
-    }
-
-    fetch('http://localhost:5000/tasks', {
-      body: JSON.stringify(task),
-      method: 'POST',
-    })
-  }
+  const { handleSubmit } = useNewTask(
+    { title: title.current, description: description.current }
+  )
 
   return (
     <>
@@ -25,13 +16,23 @@ export default function CreateTasks() {
 
       <form onSubmit={handleSubmit}>
         <label >Title of your task</label>
-        <input type="text" ref={title}/>
+        <input onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          title.current = e.target.value
+        }} type="text" placeholder="Something task"/>
 
         <label >Description of your task:</label>
-        <input type="text" ref={description}/>
+        <textarea 
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+            description.current = e.target.value
+          }} 
+          placeholder="Something task that i need realize..." cols={31}/>
 
-        <button type="submit" >Create</button>
+        <button type="submit">Create</button>
       </form>
+
+      <footer>
+        <Link className="return-to-main" to={'/'}>Return to tasks list</Link>
+      </footer>
     </>
   )
 }
